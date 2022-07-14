@@ -1,0 +1,105 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- End Required meta tags -->
+    <!-- Begin SEO tag -->
+    <title>wsociety</title>
+    <meta property="og:title" content="Sign In">
+    <meta name="author" content="Beni Arisandi">
+    <meta property="og:locale" content="en_US">
+    <meta name="description" content="Responsive admin theme build on top of Bootstrap 4">
+    <meta property="og:description" content="Responsive admin theme build on top of Bootstrap 4">
+    <link rel="canonical" href="//">
+    <meta property="og:url" content="//">
+    <meta property="og:site_name" content="Bootstrap 4 Admin Theme">
+    <!-- End SEO tag -->
+    <!-- Favicons -->
+    <link rel="apple-touch-icon-precomposed" sizes="144x144" href="static/assets/apple-touch-icon.png">
+    <link rel="shortcut icon" href="static/assets/favicon.ico">
+    <meta name="theme-color" content="#3063A0">
+    <!-- BEGIN BASE STYLES -->
+    <link rel="stylesheet" href="{% static 'assets/vendor/bootstrap/css/bootstrap.min.css'%} ">
+    <link rel="stylesheet" href="{static 'assets/vendor/font-awesome/css/fontawesome-all.min.css'} ">
+    <!-- END BASE STYLES -->
+    <!-- BEGIN THEME STYLES -->
+    <link rel="stylesheet" href="{% static 'assets/stylesheets/main.min.css'%} ">
+    <link rel="stylesheet" href="{% static 'assets/stylesheets/custom.css'%} ">
+    <!-- END THEME STYLES -->
+  </head>
+  <body>
+    <!-- .auth -->
+    <main class="auth">
+      <header id="auth-header" class="auth-header bg-black" style="background-image: url(static/assets/images/illustration/img-1.png);">
+        <h1>
+          <span class="sr-only">sign-in</span>
+        </h1>
+      </header>
+      <!-- form -->
+      <form class="auth-form" method="post">
+        <!-- .form-group -->
+        {% csrf_token %}
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="text" id="inputUser" class="form-control" placeholder="Username" name="username" required="" autofocus="">
+            <label for="inputUser">Username</label>
+          </div>
+        </div>
+        <!-- /.form-group -->
+        <!-- .form-group -->
+        <div class="form-group">
+          <div class="form-label-group">
+            <input type="password" id="inputPassword" class="form-control" placeholder="Email" name="password" required="">
+            <label for="inputPassword">Password</label>
+          </div>
+        </div>
+        <!-- /.form-group -->
+        {% if messages %}
+          <div class="form-group">
+            {% for message in messages %}
+                {% if message.tags == "error" %}
+                  <div class="alert alert-danger">
+                      {{ message }}
+                  </div>
+                {% endif %}
+                {% if message.tags == "success" %}
+                  <div class="alert alert-success">
+                      {{ message }}
+                  </div>
+                {% endif %}
+            {% endfor %}
+          </div>
+        {% endif %}
+        <!-- .form-group -->
+        <div class="form-group">
+          <button class="btn btn-lg btn-success btn-block" type="submit">Sign In</button>
+        </div>
+        <!-- /.form-group -->
+      </form>
+      <!-- /.auth-form -->
+    </main>
+    <!-- /.auth -->
+    <!-- BEGIN PLUGINS JS -->
+    <script src="{% static 'assets/vendor/particles.js/particles.min.js'%} "></script>
+    <script>
+      /* particlesJS.load(@dom-id, @path-json, @callback (optional)); */
+      particlesJS.load('auth-header', '{% static 'assets/javascript/particles.json'%}');
+    </script>
+    <!-- END PLUGINS JS -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-116692175-1"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+
+      function gtag()
+      {
+        dataLayer.push(arguments);
+      }
+      gtag('js', new Date());
+      gtag('config', 'UA-116692175-1');
+    </script>
+  </body>
+</html>
